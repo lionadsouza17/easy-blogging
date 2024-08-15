@@ -71,3 +71,6 @@ group :test do
 
 end
 gem 'cssbundling-rails'
+
+gem 'bcrypt', '~> 3.1', '>= 3.1.20'
+gem "rack-cors", :require => 'rack/cors'

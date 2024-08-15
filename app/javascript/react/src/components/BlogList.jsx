@@ -14,7 +14,7 @@ const BlogList = () => {
     ]
 
     const [blogsList, setBlogsList] = useState([])
-    const [selectedOption, setSelectedOption] = useState([blogsTags[0].value])
+    const [selectedOption, setSelectedOption] = useState(blogsTags[0].value)
     const [isShowAlert, setIsShowAlert] = useState(false)
     const [isShowLoader, setIsShowLoader] = useState(true)
 
@@ -60,15 +60,20 @@ const BlogList = () => {
     return(
         <div className='row'>
             <div className='col-lg-10 mx-auto'>
-                <p className='lead fw-bold'>Filter Blogs by Tags</p>
-                <button type="button" className="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Create a new Blog
-                </button>
-                <select className='form-select form-select-lg' value={selectedOption} onChange={event => updateSelectedItem(event)}>
-                    {blogsTags.map(tag => (
-                        <option key={tag.value} value={tag.value}>{tag.label}</option>
-                    ))}
-                </select>
+                <div className="row align-items-center">
+                    <div className="col-auto">
+                        <select className='form-select form-select-md' value={selectedOption} onChange={event => updateSelectedItem(event)}>
+                            {blogsTags.map(tag => (
+                            <option key={tag.value} value={tag.value}>{tag.label}</option>))}
+                        </select>
+                    </div>
+                    <div className="col-auto">
+                        <button type="button" className="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i className="bi bi-pen m-1"></i>
+                            New Blog
+                        </button>
+                    </div>
+                </div>
                 { blogsList.length > 0 ?
                     blogsList.map((blog) =>
                         <BlogDetail blog={blog} key={blog.id}/>
